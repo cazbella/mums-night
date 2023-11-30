@@ -69,7 +69,7 @@ const options = {
   mode: "no-cors",
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer Oi5U_fU6etXyRjHdZn4CnhJj5FXEWT7N166kXwETh79dVO2qW2vdAfF7xfIphPfTg6W9_ObDgGO7XBZAO2ywsuJhwl3fy9vEGIbhOIhT7lI0ztDFGaONMfVd3KhnZXYx'
+    Authorization: 
   }
 };
 fetch('https://api.yelp.com/v3/businesses/search?location=london&term=bar&sort_by=best_match&limit=20', options)
