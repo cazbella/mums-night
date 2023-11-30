@@ -62,7 +62,6 @@
 $(document).ready(function () {
   console.log('Document ready!');
   $("#surprise").on("click", function () {
-    alert("Button clicked!");
     fetchRandomCocktail();
     console.log("button clicked");
   });

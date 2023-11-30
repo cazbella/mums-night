@@ -23,9 +23,9 @@
 
 // https://developer.tomtom.com/geocoding-api/documentation/structgeo
 
-var apiKey = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
+var apiKeyMap = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
 var inputPostcode = "wc2b 4bs"
-var apiPostcodeURL = "https://api.tomtom.com/search/2/structuredGeocode.json?key=" + apiKey + "&countryCode=GB&postalCode=" + inputPostcode
+var apiPostcodeURL = "https://api.tomtom.com/search/2/structuredGeocode.json?key=" + apiKeyMap + "&countryCode=GB&postalCode=" + inputPostcode
 
 fetch(apiPostcodeURL)
 .then(function (response) {
