@@ -15,7 +15,8 @@ $(document).ready(function () {
       .then(function (data) {
         var drinkName = data.drinks[0].strDrink;
         var drinkImage = data.drinks[0].strDrinkThumb;
-        var drinkIngredients = 
+        var drinkIngredients = getIngredients(data.drinks[0]);
+        var drinkInstructions = data.drinks[0].strInstructions;
         console.log("Drink Image URL: " + drinkImage);
 
         console.log(data);
@@ -31,13 +32,15 @@ $(document).ready(function () {
         var cardTitle = $("<h1>").addClass("card-title").text("Name: " + drinkName);
 
         // Creates paragraphs for the cocktail info
-        var cocktailCardName = $("<p>").text("Name: " + drinkName);
-     
+        // var cocktailCardName = $("<p>").text("Name: " + drinkName);
+        var cocktailCardIngredients = $("<p>").html("Ingredients: " + drinkIngredients);
+        var cocktailCardInstructions = $("<p>").text("Instructions: " + drinkInstructions);
+
 
         var drinkImageSection = $("<img>").attr("src", drinkImage).addClass("card-img-top").attr("alt", "Cocktail Image");
 
         // Appends elements to the card body
-        cardBody.append(cardTitle, cocktailCardName, drinkImageSection);
+        cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions);
 
         // Append card body to the card
         card.append(cardBody);
@@ -51,5 +54,19 @@ $(document).ready(function () {
         console.log("Error fetching cocktail data: " + error);
       });
   }
+
+  //  function to get ingredients from the data becaue there are several lines of data
+  function getIngredients(data) {
+    var ingredients = [];
+    for (var i = 1; i <= 15; i++) {
+      var ingredient = data["strIngredient" + i];
+      var measure = data["strMeasure" + i];
+      if (ingredient && measure) {
+        ingredients.push(measure + " " + ingredient);
+      }
+    }
+    return ingredients.join("<br>");
+  }
 });
+
 
