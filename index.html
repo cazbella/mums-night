@@ -1,151 +1,171 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mums' Night</title>
-    <link href="./assets/styles/reset.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="./assets/styles/styles.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-  
-    <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mums' Night</title>
+  <link href="./assets/styles/reset.css">
+  <!-- bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+  <!-- tomtom  -->
+  <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css">
   <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
+  
+
+
  
-    <link href="./assets/styles/styles.css" rel="stylesheet">
-  </head>
-  <body>
-    <!-- header gris for image centre and logos either side? -->
-    <div class="container text-center">
-      
-      <div class="row">
-        <div class="col">
-        
-          Logo here
-        </div>
-        <div class="col mums-night-logo" id="main-logo">
-          <img src="./assets/images/Mum's Night - Black.png" alt="" srcset="">
-          Image here
-        </div>
-        <div class="col">
-          Logo here
-        </div>
+
+
+  <link href="./assets/styles/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- header gris for image centre and logos either side? -->
+  <div class="container text-center">
+
+    <div class="row">
+      <div class="col">
+
+        Logo here
+      </div>
+      <div class="col mums-night-logo" id="main-logo">
+        <img src="./assets/images/Mum's Night - Black.png" alt="" srcset="">
+        Image here
+      </div>
+      <div class="col">
+        Logo here
       </div>
     </div>
+  </div>
 
-    <!-- bootstrap navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
+  <!-- bootstrap navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown link
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <!-- Night in/Night out header -->
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <span class="navbar-text">
+        Night In or Night Out? You choose!
+      </span>
+    </div>
+  </nav>
+  <!-- tabs -->
+  <div class="container mt-4">
+    <ul class="nav nav-tabs" id="myTabs">
+      <li class="nav-item" style="width: 50%;">
+        <a class="nav-link active night-tab" id="nightInTab" data-bs-toggle="tab" href="#nightIn">Night In</a>
+      </li>
+      <li class="nav-item" style="width: 50%;">
+        <a class="nav-link night-tab" id="nightOutTab" data-bs-toggle="tab" href="#nightOut">Night Out</a>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-2">
+      <!-- Night In Tab Content -->
+      <div class="tab-pane fade show active" id="nightIn">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Search Night In</span>
+          <input type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default">
         </div>
-      </div>
-    </nav>
-    <br>
-    <!-- Night in/Night out header -->
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <span class="navbar-text">
-          Night In or Night Out? You choose!
-        </span>
-      </div>
-    </nav>
-    <!-- tabs -->
-    <div class="container mt-4">
-      <ul class="nav nav-tabs" id="myTabs">
-          <li class="nav-item" style="width: 50%;">
-              <a class="nav-link active night-tab" id="nightInTab" data-bs-toggle="tab" href="#nightIn">Night In</a>
-          </li>
-          <li class="nav-item" style="width: 50%;">
-              <a class="nav-link night-tab" id="nightOutTab" data-bs-toggle="tab" href="#nightOut">Night Out</a>
-          </li>
-      </ul>
-  
-      <div class="tab-content mt-2">
-          <!-- Night In Tab Content -->
-          <div class="tab-pane fade show active" id="nightIn">
-              <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Search Night In</span>
-                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <button type="button" class="btn btn-primary btn-sm" id="surprise">Surprise Me!</button>
-<button type="button" class="btn btn-secondary btn-sm">Small button</button>
-<div class="col-xs-12 col-sm-12 col-md-8">
-  <section id="surpriseCardSection" class="mt-3" role="region" aria-live="polite"></section>
-  <section id="forecast" class="row mt-3" role="region" aria-live="polite"></section>
-</div>
-              <!-- Add your Night In content here -->
-          </div>
-  
-          <!-- Night Out Tab Content -->
-          <div class="tab-pane fade" id="nightOut">
-              <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Search Night Out</span>
-                  <input id="inputPostcode" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <!-- Add your Night Out content here -->
-           
-              <div style="width: 30%; height: 600px; margin: 0; padding: 0;">
-                <div id="map" style="width: 100%; height: 100%;"></div>
+        <button type="button" class="btn btn-primary btn-sm" id="surprise">Surprise Me!</button>
+        <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+        <div class="col-xs-12 col-sm-12 col-md-8">
+          <section id="surpriseCardSection" class="mt-3" role="region" aria-live="polite"></section>
+          <section id="forecast" class="row mt-3" role="region" aria-live="polite"></section>
+        </div>
 
-              </div>
-
-          </div>
       </div>
+
+      <!-- Night Out Tab Content -->
+      <div class="tab-pane fade" id="nightOut">
+        <div class="input-group mb-3">
+          <input id="inputPostcode" placeholder="Search by city or postcode" type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default">
+        </div>
+        <button class="btn btn-primary" id="searchButton">Search Night Out</button>
+        
+
+        <!--Night Out content here -->
+
+        <div style="width: 30%; height: 600px; margin: 0; padding: 0;">
+          <div id="map" style="width: 100%; height: 100%;"></div>
+
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <br>
 
   <br>
-  
-    <!-- footer bootstrap -->
-    <div class="card text-center">
-      <div class="card-header">
-        Footer from bootsrtap 
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-      <div class="card-footer text-body-secondary">
-        2 days ago
-      </div>
-    </div>
 
+  <!-- footer bootstrap -->
+  <div class="card text-center">
+    <div class="card-header">
+      Footer from bootsrtap
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-body-secondary">
+      2 days ago
+    </div>
+  </div>
+
+
+     
+    <!-- jquery UI -->
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<script src="./assets/js/inlogic.js"> </script>
-<script src="./assets/js/outlogic.js"></script>
-<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
-  </body>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script src="./assets/js/inlogic.js"> </script>
+  <script src="./assets/js/outlogic.js"></script>
+
+</body>
+
 </html>
