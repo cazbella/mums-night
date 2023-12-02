@@ -107,22 +107,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // https://developer.tomtom.com/geocoding-api/documentation/structgeo
 
-var apiKeyMap = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
-var inputPostcode = "wc2b 4bs"
-var apiPostcodeURL = "https://api.tomtom.com/search/2/structuredGeocode.json?key=" + apiKeyMap + "&countryCode=GB&postalCode=" + inputPostcode
+// var apiKeyMap = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
+// var inputPostcode = "wc2b 4bs"
+// var apiPostcodeURL = "https://api.tomtom.com/search/2/structuredGeocode.json?key=" + apiKeyMap + "&countryCode=GB&postalCode=" + inputPostcode
 
-fetch(apiPostcodeURL)
-.then(function (response) {
-  return response.json();
-}).then(function (data) {
-  console.log(data)
-  var lat = data.results[0].position.lat
-  var lon = data.results[0].position.lon
-  console.log(lat)
-  console.log(lon)
+// fetch(apiPostcodeURL)
+// .then(function (response) {
+//   return response.json();
+// }).then(function (data) {
+//   console.log(data)
+//   var lat = data.results[0].position.lat
+//   var lon = data.results[0].position.lon
+//   console.log(lat)
+//   console.log(lon)
   
 
-  let currentLonLat = [lon, lat]
+//   let currentLonLat = [lon, lat]
 //   var map = tt.map({
 //   key: "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx",
 //   container: "map",
@@ -132,7 +132,7 @@ fetch(apiPostcodeURL)
 // map.on('load', () => {
 // new tt.Popup({
 
-});
+// });
     
 // }).setLngLat(currentLonLat).setText("You are Here!").addTo(map);
 

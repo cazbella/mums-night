@@ -166,7 +166,82 @@ $(document).ready(function () {
 
     // Removes the search history buttons
     $("#history").find(".history-button").remove();
+  });
+
+   // Event listener for the search button
+  document.getElementById("search").addEventListener("click", function () {
+    // Get values from form inputs
+    var cocktailName = document.getElementById("cocktailName").value;
+    var ingredient = document.getElementById("ingredient").value;
+    var isAlcoholic = document.getElementById("alcoholic").checked;
+    var isNonAlcoholic = document.getElementById("nonAlcoholic").checked;
+
+    // Perform search based on form inputs
+    searchCocktails(cocktailName, ingredient, isAlcoholic, isNonAlcoholic);
+  });
+
+  // Autocomplete for ingredients
+  // autocomplete(document.getElementById("ingredient"), function (request, response) {
+  //   // Fetch ingredients data from API and filter based on the user's input
+  //   var ingredientsAPIURL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=";
+    
+  //   fetch(ingredientsAPIURL + request)
+  //     .then(function (res) {
+  //       return res.json();
+  //     })
+  //     .then(function (data) {
+  //       response(data.drinks.map(function (item) {
+  //         return item.strIngredient1;
+  //       }));
+  //     })
+  //     .catch(function (error) {
+  //       console.log("Error fetching ingredients: " + error);
+  //       response([]);
+  //     });
+  // });
+
+  // Function to perform cocktail search
+  function searchCocktails(cocktailName, ingredient, isAlcoholic, isNonAlcoholic) {
+    var searchURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?";
+    var queryParams = [];
+
+    // Add parameters based on user input
+    if (cocktailName) queryParams.push("s=" + encodeURIComponent(cocktailName));
+    if (ingredient) queryParams.push("i=" + encodeURIComponent(ingredient));
+    if (isAlcoholic) queryParams.push("a=Alcoholic");
+    if (isNonAlcoholic) queryParams.push("a=Non_Alcoholic");
+
+    // Construct the final search URL
+    searchURL += queryParams.join("&");
+
+    fetch(searchURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // Display search results
+        displayCocktail(data);
+      })
+      .catch(function (error) {
+        console.log("Error fetching cocktail data: " + error);
+      });
   }
-  )
-}
-);
+  // ... (Your existing code)
+
+  // Autocomplete function
+  // function autocomplete(input, callback) {
+  //   var debounceTimer;
+  //   input.addEventListener("input", function () {
+  //     clearTimeout(debounceTimer);
+  //     debounceTimer = setTimeout(function () {
+  //       callback(input.value, function (suggestions) {
+  //         // Display suggestions as a list below the input
+  //         // You can use a dropdown or other UI element here
+  //         console.log(suggestions);
+  //       });
+  //     }, 300);
+  //   });
+  
+});
+
+
