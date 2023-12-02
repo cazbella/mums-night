@@ -123,17 +123,16 @@ fetch(apiPostcodeURL)
   
 
   let currentLonLat = [lon, lat]
-  var map = tt.map({
-  key: "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx",
-  container: "map",
-  center: currentLonLat,
-  zoom: 15
-  })
-map.on('load', () => {
-new tt.Popup({
-    
-}).setLngLat(currentLonLat).setText("You are Here!").addTo(map)
+//   var map = tt.map({
+//   key: "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx",
+//   container: "map",
+//   center: currentLonLat,
+//   zoom: 15
+//   })
+// map.on('load', () => {
+// new tt.Popup({
 
-})
 });
+    
+// }).setLngLat(currentLonLat).setText("You are Here!").addTo(map);
 

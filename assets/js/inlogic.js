@@ -1,9 +1,12 @@
 $(document).ready(function () {
   console.log('Document ready!');
 
+  loadSavedCocktails();
+
+
   //event listener
   $("#surprise").on("click", function () {
-    fetchRandomCocktail(function(data) {
+    fetchRandomCocktail(function (data) {
       displayCocktail(data);
     });
     console.log("button clicked");
@@ -93,14 +96,77 @@ $(document).ready(function () {
       createButtonInFooter(cocktailData.name);
     }
   }
-
+  function loadSavedCocktails() {
+    var savedCocktails = JSON.parse(localStorage.getItem("savedCocktails")) || [];
+    savedCocktails.forEach(function (cocktail) {
+      createButtonInFooter(cocktail.name);
+    });
+  }
   function createButtonInFooter(cocktailName) {
-    var button = $("<button>").addClass("btn btn-secondary btn-sm").text(cocktailName);
+    var buttonId = "saved-" + cocktailName.replace(/\s+/g, '-').toLowerCase(); //
+    var button = $("<button>")
+      .addClass("btn btn-secondary btn-sm")
+      .text(cocktailName)
+      .attr("id", "saved");
 
     button.on("click", function () {
+      loadSavedCocktail(cocktailName);
       console.log("Dynamically created button clicked for cocktail: " + cocktailName);
     });
 
     $(".card-body").find(".btn-primary").after(button);
   }
-});
+
+  function loadSavedCocktail(cocktailName) {
+    var savedCocktails = JSON.parse(localStorage.getItem("savedCocktails")) || [];
+    var savedCocktail = savedCocktails.find(function (cocktail) {
+      return cocktail.name === cocktailName;
+    });
+
+    if (savedCocktail) {
+      // Fetch the cocktail data related to the saved cocktail name
+      fetchCocktailDataByName(cocktailName);
+    } else {
+      console.log("Saved cocktail not found: " + cocktailName);
+    }
+  }
+
+  function fetchCocktailDataByName(cocktailName) {
+    // Fetch the cocktail data based on the name
+    var cocktailDataURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + encodeURIComponent(cocktailName);
+
+    fetch(cocktailDataURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        displayCocktail(data);
+      })
+      .catch(function (error) {
+        console.log("Error fetching cocktail data: " + error);
+      });
+  }
+
+
+
+  // $("#saved").on("click", function () {
+  //   fetchRandomCocktail(function(data) {
+  //     displayCocktail(data);
+  //   });
+  //   console.log("button clicked");
+  // });
+
+  //CLEAR FAVOURITES
+  // Event listener for the clear history button
+  $("#clear-history-button").on("click", function () {
+    // Clear the search history in localStorage
+    localStorage.removeItem("searchHistory");
+
+    console.log("Attempting to remove history buttons");
+
+    // Removes the search history buttons
+    $("#history").find(".history-button").remove();
+  }
+  )
+}
+);
