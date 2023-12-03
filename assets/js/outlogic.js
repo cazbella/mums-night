@@ -1,6 +1,4 @@
-
-
-//Button logic and lat/long fetch
+// Button logic and lat/long fetch
 document.addEventListener("DOMContentLoaded", function () {
   // Event listener for the button click
   $("#searchButton").on("click", function () {
@@ -30,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
           console.log("Latitude:", lat);
           console.log("Longitude:", lon);
+
+          // Call the function to fetch data from TomTom API with lat and lon
+          fetchTomTomData(lat, lon);
         } else {
           console.error("No results found for the given input.");
         }
@@ -39,63 +40,89 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function fetchCocktailBars(lat, lon) {
-    // Construct the TomTom Search API URL for cocktail bars
-    var cocktailBarsURL =
-      "https://api.tomtom.com/search/2/search/cocktailBar.json?key=" +
-      tomtomApiKey +
-      "&lat=" +
-      lat +
-      "&lon=" +
-      lon;
+  // Function to fetch data from TomTom API
+  function fetchTomTomData(latitude, longitude) {
+    var apiKeyTomTom = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx";
+    const apiURL = `https://api.tomtom.com/search/2/search/pub.json?key=${apiKeyTomTom}&lat=${latitude}&lon=${longitude}`;
 
-    // Fetch cocktail bars from TomTom API
-    fetch(cocktailBarsURL)
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        // Process the data and display nearby cocktail bars on the map
-        console.log("Cocktail Bars:", data);
-        // Implement your logic to display nearby cocktail bars on the map
-        // You can add markers or popups for each cocktail bar
-        displayCocktailBarsOnMap(data.results);
-      })
-      .catch(function (error) {
-        console.error("Cocktail Bars error:", error);
-      });
-  }
-
-  function displayCocktailBarsOnMap(cocktailBars) {
-    // Assuming `map` is your TomTom map object
-    cocktailBars.forEach(function (bar) {
-      // Create a marker for each cocktail bar
-      var marker = new tt.Marker().setLngLat([bar.position.lon, bar.position.lat]).addTo(map);
-
-      // You can customize the marker or add a popup with more information
-      // marker.setPopup(new tt.Popup().setHTML(bar.address.freeformAddress));
+    fetch(apiURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Call the function to update the content in the display section
+      updateCocktailBars(data);
+    })
+    .catch(function (error) {
+      console.error("Error fetching TomTom data:", error);
     });
   }
+// Function to update the content in the display section
+function updateCocktailBars(response) {
+  const displaySection = $('#cocktail-bars-display');
+  displaySection.empty(); // Clear previous content
+
+  const results = response.results;
+
+  // Display the nearest 10 cocktail bars
+  for (let i = 0; i < 10 && i < results.length; i++) {
+    const barName = results[i].poi.name;
+    const address = results[i].address.freeformAddress;
+
+    const card = `<div class="card mt-2">
+                    <div class="card-body">
+                      <h5 class="card-title">${barName}</h5>
+                      <p class="card-text">${address}</p>
+                    </div>
+                  </div>`;
+
+    displaySection.append(card);
+  }
+}
+
 });
+
+
+
+//   function fetchCocktailBars (latitude, longitude) {
+
+  
+//   var apiKeyYelp = "Mj20sSsnMQkCnYgdizmHXigFlzjzts2XjcvASzfVddYAsy6rIkOuvdcAG0Kul09aA9kwv5AxStYNN3HjH5CUiiKvJEaw8PumHIOQiAU0Tx8-4OMgz2EPYcyA169nZXYx";
+//   const apiUrl = 'https://api.yelp.com/v3/businesses/search';
+//   const categories = 'cocktailbars';
+
+//   const url = `${apiUrl}?latitude=${latitude}&longitude=${longitude}&categories=${categories}`;
+
+//   fetch(url, {
+//     method: 'GET',
+//     headers: {
+//       Authorization: `Bearer ${apiKeyYelp}`,
+//     },
+//   })
+//     .then(response => response.json())
+//     .then(data => {
+//       // Process the Yelp data here
+//       console.log(data);
+//     })
+//     .catch(error => console.error('Error:', error));
+// }
+// });
+  
+  // function fetchCocktailBars(lat, lon) {
+  //   // Construct the TomTom Search API URL for cocktail bars
+  //   var cocktailBarsURL =
+  //     "https://api.tomtom.com/search/2/search/cocktailBar.json?key=" +
+  //     tomtomApiKey +
+  //     "&lat=" +
+  //     lat +
+  //     "&lon=" +
+  //     lon;
+
 
 
 
 // cocktail bar api 
 
-
-// var apiKey = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
-// // const apiURL = "https://api.tomtom.com/search/2/categorySearch/cocktail.json?key=" +apiKey
-// const apiURL = "https://api.tomtom.com/search/2/nearbySearch/.json?key=1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
-// // https://api.tomtom.com/search/2/categorySearch/cocktailBar.json?key=1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx&countrySet=uk"
-// fetch(apiURL)
-// .then(function (response) {
-//   return response.json();
-// }).then(function (data) {
-//   console.log(data)
-// });
 
 
 
