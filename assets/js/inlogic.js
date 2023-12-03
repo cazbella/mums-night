@@ -105,7 +105,7 @@ $(document).ready(function () {
   function createButtonInFooter(cocktailName) {
     var buttonId = "saved-" + cocktailName.replace(/\s+/g, '-').toLowerCase(); //
     var button = $("<button>")
-      .addClass("btn btn-secondary btn-sm")
+      .addClass("btn btn-secondary btn-sm saved-cocktail-button")
       .text(cocktailName)
       .attr("id", "saved");
 
@@ -116,6 +116,16 @@ $(document).ready(function () {
 
     $(".card-body").find(".btn-primary").after(button);
   }
+    //CLEAR FAVOURITES
+    $("#delete-favourites").on("click", function () {
+      // Clear the search history in localStorage
+      localStorage.removeItem("savedCocktails");
+  
+      console.log("Attempting to remove history buttons");
+  
+      // Removes the search history buttons
+      $("#faves").find(".saved-cocktail-button").remove();
+    });
 
   function loadSavedCocktail(cocktailName) {
     var savedCocktails = JSON.parse(localStorage.getItem("savedCocktails")) || [];
@@ -149,24 +159,7 @@ $(document).ready(function () {
 
 
 
-  // $("#saved").on("click", function () {
-  //   fetchRandomCocktail(function(data) {
-  //     displayCocktail(data);
-  //   });
-  //   console.log("button clicked");
-  // });
 
-  //CLEAR FAVOURITES
-  // Event listener for the clear history button
-  $("#clear-history-button").on("click", function () {
-    // Clear the search history in localStorage
-    localStorage.removeItem("searchHistory");
-
-    console.log("Attempting to remove history buttons");
-
-    // Removes the search history buttons
-    $("#history").find(".history-button").remove();
-  });
 
    // Event listener for the search button
   document.getElementById("search").addEventListener("click", function () {
@@ -204,7 +197,7 @@ $(document).ready(function () {
   function searchCocktails(cocktailName, ingredient, isAlcoholic, isNonAlcoholic) {
     var searchURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?";
     var queryParams = [];
-
+    //CODE FROM WEB
     // Add parameters based on user input
     if (cocktailName) queryParams.push("s=" + encodeURIComponent(cocktailName));
     if (ingredient) queryParams.push("i=" + encodeURIComponent(ingredient));
@@ -243,5 +236,4 @@ $(document).ready(function () {
   //   });
   
 });
-
 
