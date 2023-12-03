@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to fetch data from TomTom API
   function fetchTomTomData(latitude, longitude) {
     var apiKeyTomTom = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx";
-    const apiURL = `https://api.tomtom.com/search/2/search/pub.json?key=${apiKeyTomTom}&lat=${latitude}&lon=${longitude}`;
+    const apiURL = `https://api.tomtom.com/search/2/search/cocktail.json?key=${apiKeyTomTom}&lat=${latitude}&lon=${longitude}`;
 
     fetch(apiURL)
     .then(function (response) {
