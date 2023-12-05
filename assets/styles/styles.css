@@ -6,7 +6,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url(/Users/carolinelane/Desktop/class/challenges/09-project1/mums-night/assets/images/wall-background.png);
+    background-image: url(/mums-night/assets/images/wall-background.png);
     background-size: cover;
     z-index: -1;
   }
