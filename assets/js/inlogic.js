@@ -1,3 +1,66 @@
+  // Countdown to the weekend 
+
+  const currentDay = dayjs().day();
+  // const currentDay = 5;
+  
+  const daysUntilWeekend = (5 - currentDay + 7) % 7;
+  
+  const weekendDate = dayjs().add(daysUntilWeekend, 'day').endOf('day');
+  
+  
+    function updateCountdown() {
+      const timeRemaining = weekendDate.diff(dayjs());
+  
+     
+      if (currentDay === 5 || currentDay === 6) {
+        const countdownElement = document.getElementById('countdown');
+     
+        countdownElement.innerHTML = `<div class="weekendMsg">It's the weekend! You Deserve a Cocktail! Hit the Search to find a Cocktail!</div>`; // Display a message
+      } else {
+        const days = Math.floor(timeRemaining / (24 * 60 * 60 * 1000));
+        const hours = Math.floor((timeRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+        const minutes = Math.floor((timeRemaining % (60 * 60 * 1000)) / (60 * 1000));
+        const seconds = Math.floor((timeRemaining % (60 * 1000)) / 1000);
+  
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.style.display = 'flex';
+        countdownElement.innerHTML =
+         `
+         <div class="days">
+        
+          <p class="daysNumber">${days}</p>
+          <p class="number"> Days</p>
+          </div>
+  
+          <div class="hours">
+          <p class="hoursNumber">${hours}</p>
+          <p> Hours </p>
+          </div>
+  
+          <div class="minutes">
+          <p class="minutesNumber">${minutes}</p>
+          <p> Minutes </p>
+          </div>
+  
+          
+          <div class="seconds">
+          <p class="secondsNumber">${seconds}</p>
+          <p> seconds </p>
+          </div>
+  
+        `;
+      }
+    }
+  
+  // Update the countdown every second
+  setInterval(updateCountdown, 1000);
+  
+  // Initial update
+  updateCountdown();
+  
+
+
+
 $(document).ready(function () {
   console.log('Document ready!');
 
