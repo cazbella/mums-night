@@ -4,6 +4,22 @@
 }
 
 body {
-    background-color: rgb(224, 224, 240);
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/Users/carolinelane/Desktop/class/challenges/09-project1/mums-night/assets/images/wall-background.png);
+    background-size: cover;
+    z-index: -1;
   }
 
+  .banner {
+    width: 100%; 
+    overflow: hidden; /
+  }
+  
+  .banner img {
+    width: 100%; 
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Remove the default inline style */
+  }
+
+  

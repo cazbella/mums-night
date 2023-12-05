@@ -17,6 +17,7 @@ $(document).ready(function () {
     getCocktailDataAndSave();
   });
 
+  //https://youtu.be/kz_vwAF4NHI?si=-c8Typf3oGpAE08v
   function fetchRandomCocktail(callback) {
     var randomCocktailURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 
@@ -33,33 +34,39 @@ $(document).ready(function () {
   }
 
   function displayCocktail(data) {
-    var drinkName = data.drinks[0].strDrink;
-    var drinkImage = data.drinks[0].strDrinkThumb;
-    var drinkIngredients = getIngredients(data.drinks[0]);
-    var drinkInstructions = data.drinks[0].strInstructions;
-    console.log("Drink Image URL: " + drinkImage);
-
-    var randomCocktailSection = $("#surpriseCardSection");
-    randomCocktailSection.empty();
-
-    var card = $("<div>").addClass("card");
-    var cardBody = $("<div>").addClass("card-body");
-    var cardTitle = $("<h1>").addClass("card-title").text("Name: " + drinkName);
-    var cocktailCardIngredients = $("<p>").html("Ingredients: " + drinkIngredients);
-    var cocktailCardInstructions = $("<p>").text("Instructions: " + drinkInstructions);
-    var drinkImageSection = $("<img>").attr("src", drinkImage).addClass("card-img-top").attr("alt", "Cocktail Image");
-
-    cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions);
-    card.append(cardBody);
-    randomCocktailSection.append(card);
-
-    // Store the data in the image element's data attribute
-    randomCocktailSection.find("img").data("cocktailData", data);
+    // Check if 'drinks' property exists and it's an array with at least one element
+    if (data.drinks && Array.isArray(data.drinks) && data.drinks.length > 0) {
+      var drinkName = data.drinks[0].strDrink;
+      var drinkImage = data.drinks[0].strDrinkThumb;
+      var drinkIngredients = getIngredients(data.drinks[0]);
+      var drinkInstructions = data.drinks[0].strInstructions;
+  
+      console.log("Drink Image URL: " + drinkImage);
+  
+      var randomCocktailSection = $("#surpriseCardSection");
+      randomCocktailSection.empty();
+  
+      var card = $("<div>").addClass("card");
+      var cardBody = $("<div>").addClass("card-body");
+      var cardTitle = $("<h1>").addClass("card-title").text("Name: " + drinkName);
+      var cocktailCardIngredients = $("<p>").html("Ingredients: " + drinkIngredients);
+      var cocktailCardInstructions = $("<p>").text("Instructions: " + drinkInstructions);
+      var drinkImageSection = $("<img>").attr("src", drinkImage).addClass("card-img-top").attr("alt", "Cocktail Image");
+  
+      cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions);
+      card.append(cardBody);
+      randomCocktailSection.append(card);
+  
+      // stores the data in the image element's data attribute
+      randomCocktailSection.find("img").data("cocktailData", data);
+    } else {
+      console.log("Invalid or empty data received from the API.");
+    }
   }
 
   function getCocktailDataAndSave() {
     var data = $("#surpriseCardSection").find("img").data("cocktailData");
-
+    //checks array exists
     if (data && data.drinks && data.drinks.length > 0) {
       var drinkData = data.drinks[0];
       var cocktailData = {
@@ -68,7 +75,7 @@ $(document).ready(function () {
         ingredients: getIngredients(drinkData) || "",
         instructions: drinkData.strInstructions || "",
       };
-
+      //calls function to save to local 
       saveCocktailToLocal(cocktailData);
       console.log("Save Me button clicked");
     } else {
@@ -77,17 +84,23 @@ $(document).ready(function () {
   }
 
   function getIngredients(data) {
+    //initialise empty array
     var ingredients = [];
+    //there are 15 spaces for ingredients in the returned data from the api
     for (var i = 1; i <= 15; i++) {
+      //gets values of properties
       var ingredient = data["strIngredient" + i];
       var measure = data["strMeasure" + i];
+      //chechs if ingredient and measure are truthy
       if (ingredient && measure) {
+        //if both are present, constructs a string in the format in brackets
         ingredients.push(measure + " " + ingredient);
       }
     }
+    //line below tells the function to return the incredients built in the array. .join concatenates all elements into a single string. takes a seperator as an argument <br> to add spaces
     return ingredients.join("<br>");
   }
-
+  //same as last challenge
   function saveCocktailToLocal(cocktailData) {
     if (cocktailData) {
       var savedCocktails = JSON.parse(localStorage.getItem("savedCocktails")) || [];
@@ -96,14 +109,17 @@ $(document).ready(function () {
       createButtonInFooter(cocktailData.name);
     }
   }
+
   function loadSavedCocktails() {
     var savedCocktails = JSON.parse(localStorage.getItem("savedCocktails")) || [];
+    //iterate over saved cocktail
     savedCocktails.forEach(function (cocktail) {
+      //calls functiom below
       createButtonInFooter(cocktail.name);
     });
   }
+  //dynamically creates saved buttons. 
   function createButtonInFooter(cocktailName) {
-    var buttonId = "saved-" + cocktailName.replace(/\s+/g, '-').toLowerCase(); //
     var button = $("<button>")
       .addClass("btn btn-secondary btn-sm saved-cocktail-button")
       .text(cocktailName)
@@ -113,19 +129,19 @@ $(document).ready(function () {
       loadSavedCocktail(cocktailName);
       console.log("Dynamically created button clicked for cocktail: " + cocktailName);
     });
-
+    //adds to buttons
     $(".card-body").find(".btn-primary").after(button);
   }
-    //CLEAR FAVOURITES
-    $("#delete-favourites").on("click", function () {
-      // Clear the search history in localStorage
-      localStorage.removeItem("savedCocktails");
-  
-      console.log("Attempting to remove history buttons");
-  
-      // Removes the search history buttons
-      $("#faves").find(".saved-cocktail-button").remove();
-    });
+  //CLEAR FAVOURITES
+  $("#delete-favourites").on("click", function () {
+    // Clear search history in localStorage
+    localStorage.removeItem("savedCocktails");
+
+    console.log("Attempting to remove history buttons");
+
+    // Removes the search history buttons
+    $("#faves").find(".saved-cocktail-button").remove();
+  });
 
   function loadSavedCocktail(cocktailName) {
     var savedCocktails = JSON.parse(localStorage.getItem("savedCocktails")) || [];
@@ -141,27 +157,57 @@ $(document).ready(function () {
     }
   }
 
+  // function fetchCocktailDataByName(cocktailName) {
+  //   // Fetch the cocktail data based on the name
+  //   var cocktailDataURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + encodeURIComponent(cocktailName);
+
+  //   //encodeURIComponent makes sure that the cocktail name is properly encoded for inclusion in a URL. Alphanumeric remains the same, 'reserved charachters' are encoded with %symbol, as are und=safe characters. Whitespace is with %20 as seen in lessons. 
+
+  //   fetch(cocktailDataURL)
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then(function (data) {
+  //       displayCocktail(data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log("Error fetching cocktail data: " + error);
+  //     });
   function fetchCocktailDataByName(cocktailName) {
     // Fetch the cocktail data based on the name
     var cocktailDataURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + encodeURIComponent(cocktailName);
-
+  
     fetch(cocktailDataURL)
       .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
         return response.json();
       })
       .then(function (data) {
+        console.log("API Response:", data); // Add this line to log the API response
         displayCocktail(data);
       })
       .catch(function (error) {
-        console.log("Error fetching cocktail data: " + error);
+        console.error("Error fetching cocktail data:", error);
       });
   }
+  
+// Function to check if a string is a valid URL
+function isValidUrl(string) {
+  try {
+    new URL(string);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
 
 
 
 
 
-   // Event listener for the search button
+  // Event listener for the search button
   document.getElementById("search").addEventListener("click", function () {
     // Get values from form inputs
     var cocktailName = document.getElementById("cocktailName").value;
@@ -173,38 +219,24 @@ $(document).ready(function () {
     searchCocktails(cocktailName, ingredient, isAlcoholic, isNonAlcoholic);
   });
 
-  // Autocomplete for ingredients
-  // autocomplete(document.getElementById("ingredient"), function (request, response) {
-  //   // Fetch ingredients data from API and filter based on the user's input
-  //   var ingredientsAPIURL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=";
-    
-  //   fetch(ingredientsAPIURL + request)
-  //     .then(function (res) {
-  //       return res.json();
-  //     })
-  //     .then(function (data) {
-  //       response(data.drinks.map(function (item) {
-  //         return item.strIngredient1;
-  //       }));
-  //     })
-  //     .catch(function (error) {
-  //       console.log("Error fetching ingredients: " + error);
-  //       response([]);
-  //     });
-  // });
+
 
   // Function to perform cocktail search
   function searchCocktails(cocktailName, ingredient, isAlcoholic, isNonAlcoholic) {
     var searchURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?";
     var queryParams = [];
     //CODE FROM WEB
+    //https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+    //The URLSearchParams interface defines utility methods to work with the query string of a URL.
+
+    //An object implementing URLSearchParams can directly be used in a for...of structure to iterate over key/value pairs in the same order as they appear in the query string, for example the following two lines are equivalent:
     // Add parameters based on user input
     if (cocktailName) queryParams.push("s=" + encodeURIComponent(cocktailName));
     if (ingredient) queryParams.push("i=" + encodeURIComponent(ingredient));
     if (isAlcoholic) queryParams.push("a=Alcoholic");
     if (isNonAlcoholic) queryParams.push("a=Non_Alcoholic");
 
-    // Construct the final search URL
+    // constructs the final search URL
     searchURL += queryParams.join("&");
 
     fetch(searchURL)
@@ -212,28 +244,46 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
-        // Display search results
+        // displays results
         displayCocktail(data);
       })
       .catch(function (error) {
         console.log("Error fetching cocktail data: " + error);
       });
   }
-  // ... (Your existing code)
 
-  // Autocomplete function
-  // function autocomplete(input, callback) {
-  //   var debounceTimer;
-  //   input.addEventListener("input", function () {
-  //     clearTimeout(debounceTimer);
-  //     debounceTimer = setTimeout(function () {
-  //       callback(input.value, function (suggestions) {
-  //         // Display suggestions as a list below the input
-  //         // You can use a dropdown or other UI element here
-  //         console.log(suggestions);
-  //       });
-  //     }, 300);
-  //   });
-  
+// fetches the list of ingredients from CocktailsDB API
+//this fills autocomplete
+function fetchIngredientSuggestions(request, response) {
+  var ingredientURL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list";
+
+  $.ajax({
+    url: ingredientURL,
+    dataType: "json",
+    success: function (data) {
+      // gets the ingredient names from the API response
+      var ingredients = data.drinks.map(function (drink) {
+        return drink.strIngredient1;
+      });
+
+      // filter suggestions based on the user's input
+      var filteredSuggestions = ingredients.filter(function (ingredient) {
+        return ingredient.toLowerCase().includes(request.term.toLowerCase());
+      });
+
+      response(filteredSuggestions);
+    },
+    error: function () {
+      console.log("Error fetching ingredient suggestions from CocktailsDB API.");
+    },
+  });
+}
+
+$("#ingredient").autocomplete({
+  source: fetchIngredientSuggestions,
+  minLength: 1, //means needs 1 charachter
+});
+
+
 });
 

@@ -52,6 +52,16 @@ Although we
 reset css stylesheet
 https://meyerweb.com/eric/tools/css/reset/
 
+yelp developer docs
+https://www.yelp.com/developers/v3/
+
+Callback Functions Explained in 5 minutes
+https://youtu.be/kz_vwAF4NHI?si=-c8Typf3oGpAE08v
+
+URL SEARCH PARAMS
+https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+
+
 
 
 ## Contributing
