@@ -96,7 +96,10 @@ $(document).ready(function () {
       });
   }
 
+  
+
   function displayCocktail(data) {
+    console.log(data);
     // Check if 'drinks' property exists and it's an array with at least one element
     if (data.drinks && Array.isArray(data.drinks) && data.drinks.length > 0) {
       var drinkName = data.drinks[0].strDrink;
@@ -286,7 +289,7 @@ function isValidUrl(string) {
 
   // Function to perform cocktail search
   function searchCocktails(cocktailName, ingredient, isAlcoholic, isNonAlcoholic) {
-    var searchURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?";
+    var searchURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?";
     var queryParams = [];
     //CODE FROM WEB
     //https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
@@ -301,6 +304,7 @@ function isValidUrl(string) {
 
     // constructs the final search URL
     searchURL += queryParams.join("&");
+    console.log(searchURL);
 
     fetch(searchURL)
       .then(function (response) {

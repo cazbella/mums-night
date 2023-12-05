@@ -41,61 +41,55 @@
           <img src="assets/images/Banner.jpg" alt="Banner Image">
         </div>
 
-        <!-- </div>
-      <div class="col mums-night-logo" id="main-logo">
-        <img src="./assets/images/Mum's Night - Black.png" alt="" srcset="" class="logo-image">
-      </div> -->
-
-        <div class="col">
-
-        </div>
       </div>
     </div>
 
     <!-- Night in/Night out header -->
-    <div class="transparent-container clock-header">
-      <div class="container-fluid">
-        <span class="navbar-text">
-          Night In or Night Out? You choose!
-        </span>
+    <div class="clock-header">
+      <div class="">
 
-        <div class="timerContainer">
+
+        <div class="timerContainer row justify-content-center">
           <div class="timerHeader">
             <h1>Cocktail 'o' Clock in:</h1>
           </div>
-          <div id="countdown">
-          </div>
+          <div id="countdown"></div>
         </div>
-
       </div>
+      <span class="question">
+        Night In or Night Out? You choose!
+      </span>
     </div>
     <!-- tabs -->
     <div class="container mt-4">
-      <ul class="nav nav-tabs" id="myTabs">
-        <li class="nav-item" style="width: 50%;">
-          <a class="nav-link active night-tab" id="nightInTab" data-bs-toggle="tab" href="#nightIn">Night In</a>
-        </li>
-        <li class="nav-item" style="width: 50%;">
-          <a class="nav-link night-tab" id="nightOutTab" data-bs-toggle="tab" href="#nightOut">Night Out</a>
-        </li>
-      </ul>
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-tabs">
+            <li class="nav-item col">
+              <a class="nav-link active night-tab" id="nightInTab" data-bs-toggle="tab" href="#nightIn">Night In</a>
+            </li>
+            <li class="nav-item col">
+              <a class="nav-link night-tab" id="nightOutTab" data-bs-toggle="tab" href="#nightOut">Night Out</a>
+            </li>
+          </ul>
 
       <div class="tab-content mt-2">
         <!-- Night In Tab Content -->
         <div class="tab-pane fade show active" id="nightIn">
           <form id="nightInForm">
             <div class="mb-3">
+              <p class="intro">Use this search to find your perfect cocktail!</p>
               <button type="button" class="btn btn-primary btn-sm" id="surprise">Surprise! Click me for a random
                 cocktail!</button>
               <br>
               <label for="cocktailName" class="form-label">Cocktail Name</label>
-              <input type="text" class="form-control" id="cocktailName" name="cocktailName" required>
+              <input type="text" class="form-control" id="cocktailName" name="cocktailName" placeholder="Search Cocktail by Name" required>
             </div>
             <div class="mb-3">
               <label for="ingredient" class="form-label">Ingredients</label>
               <input type="text" class="form-control" id="ingredient" name="ingredient"
-                placeholder="Type to search ingredients" required>
-              <!-- Autocomplete suggestions will be displayed in a dropdown -->
+                placeholder="Search by Ingredient" required>
+              <!-- Autocomplete suggestions displayed in dropdown here -->
             </div>
 
             <div class="mb-3">
