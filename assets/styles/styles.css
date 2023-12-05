@@ -6,7 +6,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url(/mums-night/assets/images/wall-background.png);
+    background-image: url(/mums-night/assets/images/wall-background.png) !important;
     background-size: cover;
     z-index: -1;
   }
@@ -27,5 +27,5 @@ body {
     color: pink;
     text-align: center;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7); /* rgba(0, 0, 0, 0.7) for black with 70% transparency */
+    background-color: transparent !important;
   };

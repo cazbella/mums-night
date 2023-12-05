@@ -14,9 +14,9 @@
   <!-- tomtom  -->
   <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css">
   <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
-  
 
-<!-- jquery -->
+
+  <!-- jquery -->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -24,7 +24,7 @@
 
   <!-- dayjs -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7"></script>
-  
+
 
 
   <link href="./assets/styles/styles.css" rel="stylesheet">
@@ -40,150 +40,147 @@
         <div class="banner">
           <img src="assets/images/Banner.jpg" alt="Banner Image">
         </div>
-      
-      <!-- </div>
+
+        <!-- </div>
       <div class="col mums-night-logo" id="main-logo">
         <img src="./assets/images/Mum's Night - Black.png" alt="" srcset="" class="logo-image">
       </div> -->
-      
-      <div class="col">
-       
+
+        <div class="col">
+
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Night in/Night out header -->
-  <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-      <span class="navbar-text">
-        Night In or Night Out? You choose!
-      </span>
+    <!-- Night in/Night out header -->
+    <div class="transparent-container clock-header">
+      <div class="container-fluid">
+        <span class="navbar-text">
+          Night In or Night Out? You choose!
+        </span>
 
-      <div class="timerContainer">
-        <div class="timerHeader"><h1>Cocktail 'o' Clock in:</h1></div>
-            <div id="countdown">
-                
-        
-        
+        <div class="timerContainer">
+          <div class="timerHeader">
+            <h1>Cocktail 'o' Clock in:</h1>
+          </div>
+          <div id="countdown">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- tabs -->
+    <div class="container mt-4">
+      <ul class="nav nav-tabs" id="myTabs">
+        <li class="nav-item" style="width: 50%;">
+          <a class="nav-link active night-tab" id="nightInTab" data-bs-toggle="tab" href="#nightIn">Night In</a>
+        </li>
+        <li class="nav-item" style="width: 50%;">
+          <a class="nav-link night-tab" id="nightOutTab" data-bs-toggle="tab" href="#nightOut">Night Out</a>
+        </li>
+      </ul>
+
+      <div class="tab-content mt-2">
+        <!-- Night In Tab Content -->
+        <div class="tab-pane fade show active" id="nightIn">
+          <form id="nightInForm">
+            <div class="mb-3">
+              <button type="button" class="btn btn-primary btn-sm" id="surprise">Surprise! Click me for a random
+                cocktail!</button>
+              <br>
+              <label for="cocktailName" class="form-label">Cocktail Name</label>
+              <input type="text" class="form-control" id="cocktailName" name="cocktailName" required>
             </div>
+            <div class="mb-3">
+              <label for="ingredient" class="form-label">Ingredients</label>
+              <input type="text" class="form-control" id="ingredient" name="ingredient"
+                placeholder="Type to search ingredients" required>
+              <!-- Autocomplete suggestions will be displayed in a dropdown -->
+            </div>
+
+            <div class="mb-3">
+              <label class="form-check-label">Type of Cocktail</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="alcoholic" name="alcoholic">
+                <label class="form-check-label" for="alcoholic">Alcoholic</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="nonAlcoholic" name="nonAlcoholic">
+                <label class="form-check-label" for="nonAlcoholic">Non-Alcoholic</label>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="search">Search</button>
+
+          </form>
+          <div class="col-xs-12 col-sm-12 col-md-8">
+            <section id="surpriseCardSection" class="mt-3" role="region" aria-live="polite"></section>
+            <section id="forecast" class="row mt-3" role="region" aria-live="polite"></section>
+            <button type="button" class="btn btn-secondary btn-sm" id="save-me">Save to faves</button>
+          </div>
         </div>
 
-      <div class="banner">
-        <p>Night Out or Night In - You Choose!</p>
-      </div>
 
-    </div>
-  </nav>
-  <!-- tabs -->
-  <div class="container mt-4">
-    <ul class="nav nav-tabs" id="myTabs">
-      <li class="nav-item" style="width: 50%;">
-        <a class="nav-link active night-tab" id="nightInTab" data-bs-toggle="tab" href="#nightIn">Night In</a>
-      </li>
-      <li class="nav-item" style="width: 50%;">
-        <a class="nav-link night-tab" id="nightOutTab" data-bs-toggle="tab" href="#nightOut">Night Out</a>
-      </li>
-    </ul>
+        <!-- Night Out Tab Content -->
+        <div class="tab-pane fade" id="nightOut">
+          <div class="input-group mb-3">
+            <input id="inputPostcode" placeholder="Search by city" type="text" class="form-control"
+              aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <button class="btn btn-primary" id="searchButton">Search Night Out</button>
 
-    <div class="tab-content mt-2">
-     <!-- Night In Tab Content -->
-<div class="tab-pane fade show active" id="nightIn">
-  <form id="nightInForm">
-    <div class="mb-3">
-      <button type="button" class="btn btn-primary btn-sm" id="surprise">Surprise! Click me for a random cocktail!</button>
-      <br>
-      <label for="cocktailName" class="form-label">Cocktail Name</label>
-      <input type="text" class="form-control" id="cocktailName" name="cocktailName" required>
-    </div>
-    <div class="mb-3">
-      <label for="ingredient" class="form-label">Ingredients</label>
-      <input type="text" class="form-control" id="ingredient" name="ingredient" placeholder="Type to search ingredients" required>
-      <!-- Autocomplete suggestions will be displayed in a dropdown -->
-    </div>
-    
-    <div class="mb-3">
-      <label class="form-check-label">Type of Cocktail</label>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="alcoholic" name="alcoholic">
-        <label class="form-check-label" for="alcoholic">Alcoholic</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="nonAlcoholic" name="nonAlcoholic">
-        <label class="form-check-label" for="nonAlcoholic">Non-Alcoholic</label>
-      </div>
-    </div>
-    <button type="button" class="btn btn-primary btn-sm" id="search">Search</button>
-   
-  </form>
-  <div class="col-xs-12 col-sm-12 col-md-8">
-    <section id="surpriseCardSection" class="mt-3" role="region" aria-live="polite"></section>
-    <section id="forecast" class="row mt-3" role="region" aria-live="polite"></section>
-    <button type="button" class="btn btn-secondary btn-sm" id="save-me">Save to faves</button>
-  </div>
-</div>
+          <div class="input-group mb-3">
+            <input id="inputPostcode" placeholder="Search by postcode" type="text" class="form-control"
+              aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <button class="btn btn-primary" id="searchButton">Search Night Out</button>
+          <section id="cocktail-bars-display"></section>
 
 
-      <!-- Night Out Tab Content -->
-      <div class="tab-pane fade" id="nightOut">
-        <div class="input-group mb-3">
-          <input id="inputPostcode" placeholder="Search by city" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        </div>
-        <button class="btn btn-primary" id="searchButton">Search Night Out</button>
-   
-        <div class="input-group mb-3">
-          <input id="inputPostcode" placeholder="Search by postcode" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        </div>
-        <button class="btn btn-primary" id="searchButton">Search Night Out</button>
-        <section id="cocktail-bars-display"></section>
-        
+          <!--Night Out content here -->
 
-        <!--Night Out content here -->
+          <div style="width: 30%; height: 600px; margin: 0; padding: 0;">
+            <div id="map" style="width: 100%; height: 100%;"></div>
 
-        <div style="width: 30%; height: 600px; margin: 0; padding: 0;">
-          <div id="map" style="width: 100%; height: 100%;"></div>
+          </div>
 
         </div>
-
       </div>
     </div>
-  </div>
 
-  <br>
+    <br>
 
-  <br>
+    <br>
 
-  <!-- footer bootstrap -->
-  <div class="card text-center">
-    <div class="card-header">
-      Favourites
+    <!-- footer bootstrap -->
+    <div class="card text-center">
+      <div class="card-header">
+        Favourites
+      </div>
+      <div class="card-body" id="faves">
+        <h5 class="card-title">Which cocktail will you try again?</h5>
+
+        <button class="btn btn-primary delete" id="delete-favourites">Clear Favourites</button>
+      </div>
+      <div class="card-footer text-body-secondary">
+        Made by Team Stressed Mum - Caroline, Abigail and Chrystel!
+      </div>
     </div>
-    <div class="card-body" id="faves">
-      <h5 class="card-title">Which cocktail will you try again?</h5>
-
-      <button class="btn btn-primary delete" id="delete-favourites">Clear Favourites</button>
-    </div>
-    <div class="card-footer text-body-secondary">
-      Made by Team Stressed Mum - Caroline, Abigail and Chrystel!
-    </div>
-  </div>
 
 
-     
-   
- 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-    crossorigin="anonymous"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
- <!-- jquery UI
+    <!-- jquery UI
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
       integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-  <script src="./assets/js/inlogic.js"> </script>
-  <script src="./assets/js/outlogic.js"></script>
+    <script src="./assets/js/inlogic.js"> </script>
+    <script src="./assets/js/outlogic.js"></script>
 
 </body>
 
