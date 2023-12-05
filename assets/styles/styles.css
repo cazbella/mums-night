@@ -22,3 +22,10 @@ body {
     display: block; /* Remove the default inline style */
   }
 
+  .banner {
+    background-color: black;
+    color: pink;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* rgba(0, 0, 0, 0.7) for black with 70% transparency */
+  };
