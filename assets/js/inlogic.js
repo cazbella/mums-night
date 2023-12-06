@@ -335,6 +335,7 @@ function searchCocktailsByIngredient(ingredient) {
 
 // Function to display a list of cocktails
 function displayCocktailList(cocktails) {
+  $("#surpriseCardSection").empty();
   //  if there are cocktails response
   if (cocktails && Array.isArray(cocktails) && cocktails.length > 0) {
     // make unordered list to append cocktails
@@ -409,6 +410,7 @@ $("#search-by-ingredient").on("click", function () {
   // Perform search by ingredient
   searchCocktailsByIngredient(ingredient);
 });
+
 
 
 
