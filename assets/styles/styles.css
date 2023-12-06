@@ -111,7 +111,7 @@ body {
 }
 
 #surprise {
-  margin-top: 15px;
+  margin-bottom: 15px;
   color: rgb(236, 75, 196) !important;
   background-color: rgba(0, 0, 0, 0.4) !important;
   border: 1px solid yellow !important;
@@ -139,4 +139,17 @@ body {
   color: yellow !important;
   background-color: rgba(0, 0, 0, 0.5) !important;
   border-color: black !important;
+}
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  color: rgb(236, 75, 196);
+  border: 1px solid yellow;
+  margin-bottom: 10px;
+}
+
+.saved-cocktail-button {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  color: rgb(236, 75, 196);
+  border: none !important;
 }

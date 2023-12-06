@@ -75,10 +75,11 @@ $("#surprise").on("click", function () {
   console.log("button clicked");
 });
 
-//event listener save
-$("#save-me").on("click", function () {
-  getCocktailDataAndSave();
-});
+
+// //event listener save
+// $("#save-me").on("click", function () {
+//   getCocktailDataAndSave();
+// });
 
 //https://youtu.be/kz_vwAF4NHI?si=-c8Typf3oGpAE08v
 function fetchRandomCocktail(callback) {
@@ -119,7 +120,21 @@ function displayCocktail(data) {
     var cocktailCardInstructions = $("<p>").text("Instructions: " + drinkInstructions);
     var drinkImageSection = $("<img>").attr("src", drinkImage).addClass("card-img-top").attr("alt", "Cocktail Image");
 
-    cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions);
+    var saveButton = $("<button>")
+      .addClass("btn btn-primary")
+      .attr("id", "save-me")
+      .text("Save Me")
+      .on("click", function () {
+        // Save the cocktail to favorites when the button is clicked
+        saveCocktailToLocal({
+          name: drinkName,
+          image: drinkImage,
+          ingredients: drinkIngredients,
+          instructions: drinkInstructions,
+        });
+      });
+
+    cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions, saveButton);
     card.append(cardBody);
     randomCocktailSection.append(card);
 
@@ -186,17 +201,18 @@ function loadSavedCocktails() {
 }
 //dynamically creates saved buttons. 
 function createButtonInFooter(cocktailName) {
+  var buttonId = "saved-" + cocktailName.replace(/\s+/g, "-").toLowerCase(); // Generate a unique ID
   var button = $("<button>")
     .addClass("btn btn-secondary btn-sm saved-cocktail-button")
     .text(cocktailName)
-    .attr("id", "saved");
+    .attr("id", buttonId);
 
   button.on("click", function () {
     loadSavedCocktail(cocktailName);
     console.log("Dynamically created button clicked for cocktail: " + cocktailName);
   });
-  //adds to buttons
-  $(".card-body").find(".btn-primary").after(button);
+
+  $("#faves").append(button);
 }
 //CLEAR FAVOURITES
 $("#delete-favourites").on("click", function () {
@@ -370,18 +386,33 @@ function fetchCocktailDetails(cocktailId) {
 
   fetch(cocktailDetailsURL)
     .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
       return response.json();
     })
     .then(function (data) {
-      displayCocktailDetails(data.drinks[0]);
+      console.log("API Response:", data); // Log the entire API response
+
+      // Extract the first drink details from the response
+      var cocktailDetails = data.drinks && Array.isArray(data.drinks) && data.drinks.length > 0
+        ? data.drinks[0]
+        : null;
+
+      if (cocktailDetails) {
+        console.log("Cocktail Details:", cocktailDetails);
+        displayCocktailDetails(cocktailDetails);
+      } else {
+        console.error("Invalid or empty data received from the API.");
+      }
     })
     .catch(function (error) {
-      console.log("Error fetching cocktail details: " + error);
+      console.error("Error fetching cocktail details:", error);
     });
 }
 
 
-// Function to display details of a specific cocktail
+
 function displayCocktailDetails(cocktail) {
   if (cocktail) {
     // make card elements for the clicked cocktail
@@ -392,15 +423,33 @@ function displayCocktailDetails(cocktail) {
     var cocktailCardInstructions = $("<p>").text("Instructions: " + cocktail.strInstructions);
     var drinkImageSection = $("<img>").attr("src", cocktail.strDrinkThumb).addClass("card-img-top").attr("alt", "Cocktail Image");
 
-    cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions);
+    // Create a "Save to Favorites" button
+    var saveButton = $("<button>")
+      .addClass("btn btn-secondary btn-sm saved-cocktail-button")
+      .text("Save to Favorites")
+      .on("click", function () {
+        // Save the cocktail to favorites when the button is clicked
+        saveCocktailToLocal({
+          name: cocktail.strDrink,
+          image: cocktail.strDrinkThumb,
+          ingredients: getIngredients(cocktail),
+          instructions: cocktail.strInstructions,
+        });
+      });
+        
+        createButtonInFooter(cocktail.strDrink);
+    
+
+    cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions, saveButton);
     card.append(cardBody);
 
-    // clearexisting content in the surpriseCardSection and append the card
+    // clear existing content in the surpriseCardSection and appends the card
     $("#surpriseCardSection").empty().append(card);
   } else {
     console.log("No cocktail details available.");
   }
 }
+
 
 // listener for the search by ingredient button
 $("#search-by-ingredient").on("click", function () {
@@ -413,7 +462,7 @@ $("#search-by-ingredient").on("click", function () {
 
 
 
-
+//tries to do autocomplete - failed!! API not suitable???
 // fetches the list of ingredients from CocktailsDB API
 //this fills autocomplete
 // function fetchIngredientSuggestions(request, response) {
