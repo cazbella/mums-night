@@ -58,21 +58,14 @@ When a user then scrolls to the bottom of the information they can save the info
 
 ## Challenges
 
-These are the challenges we faced
+These are the challenges we faced were numerous! We tried initially to include a map in the 'out' tab and then append the cocktail bard to the map - but this unfortunately doesn't work yet! 
+We had problems styling the dynamic buttons. We had problems finding APIs that it was possible to use without key issues. 
+We tried to create an autocomplete for the search box and create a list for the user, but this was restricted by the API version available to us. 
 
-__Issue 1__
+__A Note about Comments__
 _____________________________
 
-This issue was
-
-
-__A Note about ...__
-_____________________________
-
-Although we 
-
-
-
+There is a lot of comments in the code to help us remember what the code does and aid collaboration!
 
 
 # References 
@@ -88,11 +81,13 @@ https://youtu.be/kz_vwAF4NHI?si=-c8Typf3oGpAE08v
 URL SEARCH PARAMS
 https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
+https://youtu.be/kz_vwAF4NHI?si=-c8Typf3oGpAE08v
 
+https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
 ## Contributing
 
-
+We would appreciate feedback on the functionality and how the code could be improved!
 
 
 ## License

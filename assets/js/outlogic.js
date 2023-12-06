@@ -208,8 +208,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="card-body">
       <h5 class="card-title">${cocktailBarName}</h5>
       <p class="card-text">Address: ${cocktailBarAddress}</p>
-      <p class="card-text">Website:'${cocktailBarURL}'</p>
-      <p class="card-text">Contact Number: ${cocktailBarContact}</p>
      
     </div>
   </div>`;

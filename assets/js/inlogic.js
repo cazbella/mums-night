@@ -121,7 +121,7 @@ function displayCocktail(data) {
     var drinkImageSection = $("<img>").attr("src", drinkImage).addClass("card-img-top").attr("alt", "Cocktail Image");
 
     var saveButton = $("<button>")
-      .addClass("btn btn-primary")
+      .addClass("btn btn-primary save")
       .attr("id", "save-me")
       .text("Save Me")
       .on("click", function () {
@@ -133,6 +133,7 @@ function displayCocktail(data) {
           instructions: drinkInstructions,
         });
       });
+      
 
     cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions, saveButton);
     card.append(cardBody);
@@ -212,7 +213,7 @@ function createButtonInFooter(cocktailName) {
     console.log("Dynamically created button clicked for cocktail: " + cocktailName);
   });
 
-  $("#faves").append(button);
+  $("#faves").prepend(button);
 }
 //CLEAR FAVOURITES
 $("#delete-favourites").on("click", function () {
