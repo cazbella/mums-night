@@ -1,9 +1,9 @@
 // Button logic and lat/long fetch
 document.addEventListener("DOMContentLoaded", function () {
   // Event listener for the button click
-  $("#searchButton").on("click", function () {
+  $("#citySearchButton").on("click", function () {
     // Get the user input
-    var userInput = $("#inputPostcode").val();
+    var userInput = $("#inputCity").val();
 
     // Fetch latitude and longitude from OpenWeatherMap Geocoding API
     fetchLocation(userInput);
@@ -125,41 +125,99 @@ function updateCocktailBars(response) {
 
 
 
+// Abigail Code
 
+document.addEventListener("DOMContentLoaded", function() {
+  $("#postcodeSearchButton").on("click", function () {
+  
+   var searchPostcode = $("#inputPostcode").val();
+  
+   fetchLocation(searchPostcode);
+  
+  
+  });
+  
+  // function to fetch lon/lat api returns lon lat. store lon/lat for locations api search
+  function fetchLocation(searchPostcode){
+    var postcodeApiKey = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
+    var postcodeApiURL = "https://api.tomtom.com/search/2/structuredGeocode.json?key=" + postcodeApiKey + "&countryCode=GB&postalCode=" + searchPostcode
+  
+  fetch(postcodeApiURL)
+  .then(function (response) {
+    if (!response.ok) {
+      throw new Error("Network response was not ok")
+    }
+    return response.json()
+  })
+  .then(function(data) {
+    var lat = data.results[0].position.lat
+    var lon = data.results[0].position.lon
+    console.log("Latitude: " + lat)
+    console.log("Longitude: " + lon)
+  
+  
+    fetchBar(lat,lon)
+  });
+  }
+  // takes lon lat and uses function to fetch local bars in 10 mile radius
+  
+  function fetchBar(lat, lon) {
+    var cocktailBarApi = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
+    var cocktailBarURL = "https://api.tomtom.com/search/2/search/cocktail.json?key=" + cocktailBarApi + "&lat=" + lat + "&lon=" + lon
+    fetch(cocktailBarURL)
+    .then(function(response){
+      if (!response.ok) {
+        throw new Error("Network response was not ok")
+      }
+      return response.json()
+  
+    })
+    .then(function(data) {
+      // var cocktailBarName = data.results[0].poi.name
+      // var cocktailBarURL = data.results[0].poi.url
+      // var cocktailBarAddress = data.results[0].address
+      // var cocktailBarContact = data.results[0].poi.phone
+      // var cocktailBarDistance = data.results[0].dist
+      // console.log(cocktailBarName, cocktailBarURL, cocktailBarAddress, cocktailBarContact, cocktailBarDistance)
+  displayCocktailBar(data)
+  
+    })
+  }
 
+  // store relevant data in variables -bar name -bar address -Image -Contact -distance from current location?
 
+  function displayCocktailBar(response) {
+    var cocktailbarContainer = $("#cocktail-bars-display")
+    cocktailbarContainer.empty();
+  
+    const results = response.results
+  
+    for (var i=0; i < 10; i++) {
 
+    var cocktailBarName = results[i].poi.name
+    var cocktailBarURL = results[i].poi.url
+    var cocktailBarAddress = results[i].address.freeformAddress
+    var cocktailBarContact = results[i].poi.phone
 
-// Postcode Geocoding
-
-// https://developer.tomtom.com/geocoding-api/documentation/structgeo
-
-// var apiKeyMap = "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx"
-// var inputPostcode = "wc2b 4bs"
-// var apiPostcodeURL = "https://api.tomtom.com/search/2/structuredGeocode.json?key=" + apiKeyMap + "&countryCode=GB&postalCode=" + inputPostcode
-
-// fetch(apiPostcodeURL)
-// .then(function (response) {
-//   return response.json();
-// }).then(function (data) {
-//   console.log(data)
-//   var lat = data.results[0].position.lat
-//   var lon = data.results[0].position.lon
-//   console.log(lat)
-//   console.log(lon)
+  
+  
+  
   
 
-//   let currentLonLat = [lon, lat]
-//   var map = tt.map({
-//   key: "1PlLlgkSL1yOVvPAAxneNWtg75jI8Xhx",
-//   container: "map",
-//   center: currentLonLat,
-//   zoom: 15
-//   })
-// map.on('load', () => {
-// new tt.Popup({
+    const card = `<div class="card mt-2">
+    <div class="card-body">
+      <h5 class="card-title">${cocktailBarName}</h5>
+      <p class="card-text">Address: ${cocktailBarAddress}</p>
+      <p class="card-text">Website:'${cocktailBarURL}'</p>
+      <p class="card-text">Contact Number: ${cocktailBarContact}</p>
+     
+    </div>
+  </div>`;
 
-// });
-    
-// }).setLngLat(currentLonLat).setText("You are Here!").addTo(map);
+  cocktailbarContainer.append(card)
+    }
+  }
+  });
+  
+
 
