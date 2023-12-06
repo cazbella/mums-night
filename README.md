@@ -16,6 +16,15 @@ This application is born from 3 mums who were desperate for a relaxing weekend! 
 
 The original ideas are shown in the wireframe below. 
 
+Our first Wireframe shows our initial ideas and basic flow of our page
+
+![Screenshot of First Wireframe](./assets/images/firstWireframe.png)
+
+Our second Wireframe includes colour palettes and font options as well as image inspiration and another iteration of out layout. 
+
+![Screenshot of landing area](./assets/images/secondWireframe.png)
+
+
 ## Usage
 
 Upon loading the application the user is faced with the following page;
