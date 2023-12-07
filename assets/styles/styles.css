@@ -88,6 +88,8 @@ input:not(:focus) {
 }
 
 
+
+
 input:not(:focus)::placeholder {
   color: yellow; /* Set the color of the placeholder text in idle state */
 }
@@ -258,6 +260,10 @@ color: rgb(236, 75, 196);
   max-width: 400px;
   height: auto;
   margin: 10px auto;
+}
+
+.card.footer p {
+  color: rgb(236, 75, 196) !important; 
 }
 
 

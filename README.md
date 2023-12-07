@@ -62,6 +62,15 @@ These are the challenges we faced were numerous! We tried initially to include a
 We had problems styling the dynamic buttons. We had problems finding APIs that it was possible to use without key issues. 
 We tried to create an autocomplete for the search box and create a list for the user, but this was restricted by the API version available to us. 
 
+__Technologies used__
+_____________________________
+
+We used several APIs in our application; 
+Day js
+Open Weather 
+Tom Tom
+And of course - Cocktails db!
+
 __A Note about Comments__
 _____________________________
 
