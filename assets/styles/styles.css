@@ -66,9 +66,38 @@ body {
 }
 
 input:valid {
-  background: lime;
+  background: yellow;
+  /* border: black; */
   /* border: 1px solid yellow;
 } */
+}
+
+input:valid:focus {
+  border-color: yellow; 
+  color: yellow;
+}
+
+input::before:focus {
+  border-color: yellow; 
+  color: yellow;
+}
+
+input:not(:focus) {
+  background-color: yellow; 
+  color: black; 
+}
+
+
+input:not(:focus)::placeholder {
+  color: yellow; /* Set the color of the placeholder text in idle state */
+}
+
+
+/* Style when the input is focused */
+input:focus {
+  border-color: red; /* Set the border color when focused */
+  outline: none; /* Remove the default focus outline */
+  /* Add any additional styles for focused state */
 }
 
 .night-tab.active {
@@ -93,6 +122,21 @@ input:valid {
 
   box-sizing: border-box;
 }
+
+#nightInForm #cocktailName:focus,
+#nightInForm #ingredient:focus {
+  border-color: yellow;
+  outline: none;
+}
+
+#nightInForm #cocktailName::placeholder,
+#nightInForm #ingredient::placeholder {
+  color: rgb(236, 75, 196);
+  font-weight: lighter;
+  opacity: 0.7;
+}
+
+
 
 #search {
   margin-top: 10px;
@@ -178,6 +222,8 @@ input:valid {
 #search-save {
   color: yellow !important;
    background-color: rgba(0, 0, 0, 0.5) !important;
+   margin-left: 5px;
+  margin-right: 5px;
   border-color:  rgb(236, 75, 196) !important;
 } 
 
@@ -194,6 +240,32 @@ color: rgb(236, 75, 196);
 
 }
 
-.card-footer .p {
+.text-body-secondary, .p {
   color: rgb(236, 75, 196) ;
+}
+
+#nightInForm #cocktailName:valid,
+#nightInForm #ingredient:valid {
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+  border: 1px solid rgb(236, 75, 196);
+}
+
+#nightInForm #cocktailName:not(:focus):not(:valid),
+#nightInForm #ingredient:not(:focus):not(:valid) {
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+  border: 1px solid rgb(236, 75, 196);
+}
+
+#nightInForm #cocktailName::placeholder,
+#nightInForm #ingredient::placeholder {
+  color: rgb(236, 75, 196);
+  font-weight: lighter;
+  opacity: 0.7;
+}
+
+.display {
+  width: 80%;
+  max-width: 400px; /* Adjust the maximum width as needed */
+  height: auto;
+  margin: 10px auto; /* Add margin as needed */
 }

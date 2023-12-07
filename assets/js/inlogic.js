@@ -113,7 +113,7 @@ function displayCocktail(data) {
     var randomCocktailSection = $("#surpriseCardSection");
     randomCocktailSection.empty();
 
-    var card = $("<div>").addClass("card");
+    var card = $("<div>").addClass("card display");
     var cardBody = $("<div>").addClass("card-body");
     var cardTitle = $("<h1>").addClass("card-title").text("Name: " + drinkName);
     var cocktailCardIngredients = $("<p>").html("Ingredients: " + drinkIngredients);
