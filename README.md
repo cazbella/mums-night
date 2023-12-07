@@ -85,6 +85,8 @@ https://youtu.be/kz_vwAF4NHI?si=-c8Typf3oGpAE08v
 
 https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
+https://stackoverflow.com/questions/69628971/change-form-input-background-color-if-text-present
+
 ## Contributing
 
 We would appreciate feedback on the functionality and how the code could be improved!

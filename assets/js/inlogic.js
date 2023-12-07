@@ -202,11 +202,10 @@ function loadSavedCocktails() {
 }
 //dynamically creates saved buttons. 
 function createButtonInFooter(cocktailName) {
-  var buttonId = "saved-" + cocktailName.replace(/\s+/g, "-").toLowerCase(); // Generate a unique ID
   var button = $("<button>")
     .addClass("btn btn-secondary btn-sm saved-cocktail-button")
     .text(cocktailName)
-    .attr("id", buttonId);
+    .attr("id", "search-save");
 
   button.on("click", function () {
     loadSavedCocktail(cocktailName);
@@ -268,7 +267,7 @@ function fetchCocktailDataByName(cocktailName) {
       return response.json();
     })
     .then(function (data) {
-      console.log("API Response:", data); // Add this line to log the API response
+      console.log("API Response:", data); // this line logs the API response
       displayCocktail(data);
     })
     .catch(function (error) {
@@ -290,7 +289,7 @@ document.getElementById("search").addEventListener("click", function () {
 
 
 // Function to perform cocktail search
-function searchCocktails(cocktailName, ingredient, isAlcoholic, isNonAlcoholic) {
+function searchCocktails(cocktailName, ingredient) {
   var searchURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?";
   var queryParams = [];
   //CODE FROM WEB
@@ -426,7 +425,7 @@ function displayCocktailDetails(cocktail) {
 
     // Create a "Save to Favorites" button
     var saveButton = $("<button>")
-      .addClass("btn btn-secondary btn-sm saved-cocktail-button")
+      .addClass("btn btn-secondary btn-sm saved-cocktail-search-name-button")
       .text("Save to Favorites")
       .on("click", function () {
         // Save the cocktail to favorites when the button is clicked
@@ -444,7 +443,7 @@ function displayCocktailDetails(cocktail) {
     cardBody.append(cardTitle, cocktailCardIngredients, drinkImageSection, cocktailCardInstructions, saveButton);
     card.append(cardBody);
 
-    // clear existing content in the surpriseCardSection and appends the card
+    // clears existing content in the surpriseCardSection and appends the card
     $("#surpriseCardSection").empty().append(card);
   } else {
     console.log("No cocktail details available.");
