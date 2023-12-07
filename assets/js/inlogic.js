@@ -416,7 +416,7 @@ function fetchCocktailDetails(cocktailId) {
 function displayCocktailDetails(cocktail) {
   if (cocktail) {
     // make card elements for the clicked cocktail
-    var card = $("<div>").addClass("card");
+    var card = $("<div>").addClass("card display");
     var cardBody = $("<div>").addClass("card-body");
     var cardTitle = $("<h1>").addClass("card-title").text("Name: " + cocktail.strDrink);
     var cocktailCardIngredients = $("<p>").html("Ingredients: " + getIngredients(cocktail));

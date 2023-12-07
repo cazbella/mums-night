@@ -50,7 +50,7 @@ body {
 .hours,
 .minutes,
 .seconds {
-  margin-right: 10px; /* Adjust the margin as needed */
+  margin-right: 10px; 
 }
 
 .question {
@@ -62,7 +62,7 @@ body {
 .night-tab {
   color: rgb(236, 75, 196) !important;
   border: 1px solid yellow !important;
-  border: 1px solid black; /* Add a black border */
+  border: 1px solid black; 
 }
 
 input:valid {
@@ -95,9 +95,7 @@ input:not(:focus)::placeholder {
 
 /* Style when the input is focused */
 input:focus {
-  border-color: red; /* Set the border color when focused */
   outline: none; /* Remove the default focus outline */
-  /* Add any additional styles for focused state */
 }
 
 .night-tab.active {
@@ -190,14 +188,6 @@ input:focus {
   opacity: 0.7; 
 }
 
-/* .btn.btn-primary {
-  color: yellow !important;
-  background-color: black;
-  color: rgb(236, 75, 196);
-  border: rgb(236, 75, 196) !important;
-
-} */
-
 #citySearchButton{
   margin-bottom: 12px;
 }
@@ -265,7 +255,9 @@ color: rgb(236, 75, 196);
 
 .display {
   width: 80%;
-  max-width: 400px; /* Adjust the maximum width as needed */
+  max-width: 400px;
   height: auto;
-  margin: 10px auto; /* Add margin as needed */
+  margin: 10px auto;
 }
+
+
