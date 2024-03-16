@@ -1,5 +1,18 @@
 // Button logic and lat/long fetch
 document.addEventListener("DOMContentLoaded", function () {
+  
+  // Event listener for the tab clicks
+    $('#nightIn, #nightOut').on('click', function() {
+        // Clear the night out section
+        clearNightOutSection();
+    });
+
+    // Function to clear the night out section
+    function clearNightOutSection() {
+        // Empty the content of the night out section
+        $('#cocktail-bars-display').empty();
+    }
+  
   // Event listener for the button click
   $("#citySearchButton").on("click", function () {
     // Get the user input
