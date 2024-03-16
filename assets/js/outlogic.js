@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   
   // Event listener for the tab clicks
-    $('#nightIn, #nightOut').on('click', function() {
+    $('.tab-pane, #nightIn, #nightOut').on('click', function() {
         // Clear the night out section
         clearNightOutSection();
     });
