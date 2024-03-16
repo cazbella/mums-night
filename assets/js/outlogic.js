@@ -1,11 +1,12 @@
 // Button logic and lat/long fetch
 document.addEventListener("DOMContentLoaded", function () {
   
-     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    // Add event listener for Bootstrap tab shown event
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         // Get the target tab
         var targetTab = $(e.target).attr("href");
 
-        // Check if the target tab is the "Night Out" tab
+        // Check if the target tab is the "Night In" tab
         if (targetTab === "#nightIn") {
             // Clear the "Night Out" section
             clearNightOutSection();
