@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var targetTab = $(e.target).attr("href");
 
         // Check if the target tab is the "Night Out" tab
-        if (targetTab === "#nightOut") {
+        if (targetTab === "#nightIn") {
             // Clear the "Night Out" section
             clearNightOutSection();
         }
