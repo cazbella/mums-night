@@ -1,18 +1,22 @@
 // Button logic and lat/long fetch
 document.addEventListener("DOMContentLoaded", function () {
   
-  // Event listener for the tab clicks
-    $('.tab-pane, #nightIn, #nightOut').on('click', function() {
-        // Clear the night out section
-        clearNightOutSection();
+     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        // Get the target tab
+        var targetTab = $(e.target).attr("href");
+
+        // Check if the target tab is the "Night Out" tab
+        if (targetTab === "#nightOut") {
+            // Clear the "Night Out" section
+            clearNightOutSection();
+        }
     });
 
-    // Function to clear the night out section
+    // Function to clear the "Night Out" section
     function clearNightOutSection() {
-        // Empty the content of the night out section
         $('#cocktail-bars-display').empty();
     }
-  
+    
   // Event listener for the button click
   $("#citySearchButton").on("click", function () {
     // Get the user input
