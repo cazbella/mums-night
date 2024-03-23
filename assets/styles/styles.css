@@ -267,3 +267,9 @@ color: rgb(236, 75, 196);
 }
 
 
+@media (max-width: 767px) {
+  .card-deck .card {
+    width: 100%;
+  }
+}
+

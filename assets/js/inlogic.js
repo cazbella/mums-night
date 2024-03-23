@@ -69,6 +69,9 @@ loadSavedCocktails();
 
 //event listener
 $("#surprise").on("click", function () {
+  // Clear the cocktail bars display section
+  $("#cocktail-bars-display").empty();
+
   fetchRandomCocktail(function (data) {
     displayCocktail(data);
   });
@@ -278,6 +281,8 @@ function fetchCocktailDataByName(cocktailName) {
 
 // Event listener for the search button
 document.getElementById("search").addEventListener("click", function () {
+  $("#cocktail-bars-display").empty();
+  
   // Get values from form inputs
   var cocktailName = document.getElementById("cocktailName").value;
   var ingredient = document.getElementById("ingredient").value;
@@ -322,6 +327,7 @@ function searchCocktails(cocktailName, ingredient) {
 
 // Event listener for the search by ingredient button
 document.getElementById("search-by-ingredient").addEventListener("click", function () {
+  $("#cocktail-bars-display").empty();
   // Get the ingredient from the input
   var ingredient = document.getElementById("ingredient").value;
 
